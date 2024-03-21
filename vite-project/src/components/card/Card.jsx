@@ -1,28 +1,28 @@
-const Card = ({ title, date, theme, description }) => {
+  export default function Card({topic, name, date}) {
     return (
-      <div className="cards__item">
+        <div className="cards__item">
         <div className="cards__card card">
           <div className="card__group">
-            <div className={`card__theme _${theme}`}>
-              <p className={`_${theme}`}>{description}</p>
+            <div className="card__theme _orange">
+              <p className="_orange">{topic}</p>
             </div>
             <a href="#popBrowse" target="_self">
               <div className="card__btn">
-                <div></div>
-                <div></div>
-                <div></div>
+                <div />
+                <div />
+                <div />
               </div>
             </a>
           </div>
           <div className="card__content">
             <a href="" target="_blank">
-              <h3 className="card__title">{title}</h3>
+            <h3 className="card__title">{name}</h3>
             </a>
             <div className="card__date">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="13"
-                height="13"
+                width={13}
+                height={13}
                 viewBox="0 0 13 13"
                 fill="none"
               >
@@ -43,7 +43,7 @@ const Card = ({ title, date, theme, description }) => {
                 </g>
                 <defs>
                   <clipPath id="clip0_1_415">
-                    <rect width="13" height="13" fill="white" />
+                    <rect width={13} height={13} fill="white" />
                   </clipPath>
                 </defs>
               </svg>
@@ -52,7 +52,5 @@ const Card = ({ title, date, theme, description }) => {
           </div>
         </div>
       </div>
-    );
-  };
-  
-  export default Card;
+    )
+}
