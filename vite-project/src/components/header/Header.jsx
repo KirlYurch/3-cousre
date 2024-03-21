@@ -1,4 +1,11 @@
-export default function Header() {
+// Импортирую хук useState из пакета 'react'
+import { useState } from "react";
+
+export default function Header({addCard}) {
+  // Получаю состояние isOpen и функцию setIsOpen из хука useState, с базовым значением false
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDropdown = () => setIsOpen((prevState) => !prevState); // Прописываю функцию для выпадания элемента
+
   return (
     <header className="header">
       <div className="container">
@@ -14,27 +21,32 @@ export default function Header() {
             </a>
           </div>
           <nav className="header__nav">
-            <button className="header__btn-main-new _hover01" id="btnMainNew">
-              <a href="#popNewCard">Создать новую задачу</a>
+            <button className="header__btn-main-new _hover01" id="btnMainNew" onClick={addCard}>
+              {/* <a href="#popNewCard">Создать новую задачу</a>*/} Создать новую задачу 
             </button>
-            <a href="#user-set-target" className="header__user _hover02">
+            <a
+              onClick={toggleDropdown} // Подключаю функцию выпадания элемента через подпись на событие OnClick
+              href="#user-set-target"
+              className="header__user _hover02"
+            >
               Ivan Ivanov
             </a>
-            <div
-              className="header__pop-user-set pop-user-set"
-              id="user-set-target"
-            >
-              <a href="">x(тут ошибку выдает)</a>
-              <p className="pop-user-set__name">Ivan Ivanov</p>
-              <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-              <div className="pop-user-set__theme">
-                <p>Темная тема</p>
-                <input type="checkbox" className="checkbox" name="checkbox" />
+            {isOpen && ( // Прописываю логику открытия/закрытия ВЫПАДАЮЩЕГО ЭЛЕМЕНТА через логический оператор И
+              <div
+                className="header__pop-user-set pop-user-set"
+                id="user-set-target"
+              >
+                <p className="pop-user-set__name">Ivan Ivanov</p>
+                <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
+                <div className="pop-user-set__theme">
+                  <p>Темная тема</p>
+                  <input type="checkbox" className="checkbox" name="checkbox" />
+                </div>
+                <button type="button" className="_hover03">
+                  <a href="#popExit">Выйти</a>
+                </button>
               </div>
-              <button type="button" className="_hover03">
-                <a href="#popExit">Выйти</a>
-              </button>
-            </div>
+            )}
           </nav>
         </div>
       </div>

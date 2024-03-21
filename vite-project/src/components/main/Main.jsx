@@ -1,23 +1,31 @@
 import Column from "../column/Column";
-export default function Main() {
-return (
-    <main className="main">
-    <div className="container">
-      <div className="main__block">
-        <div className="main__content">
-          {/* Тут начало  общего блока! */}
 
-          {/* Окончание блоково компонент */}
-          <Column title={`Без статуса`} />
-          <Column title={`Нужно сделать`} />
-          <Column title={`В работе`} />
-          <Column title={`Тестирование`} />
-          <Column title={`Готово`} />
-          {/* ................................................................. */}
+const statusList = [ // Отрисовываю названия колонок через список статусов
+  "Без статуса",
+  "Нужно сделать",
+  "В работе",
+  "Тестирование",
+  "Готово",
+];
+
+export default function Main({ cardList, isLoading }) {
+  return (
+    <main className="main">
+      <div className="container">
+        <div className="main__block">
+          <div className="main__content">
+          {isLoading
+              ? "Данные загружаются, пожалуйста подождите..."
+              :statusList.map((item) => (  // Создаю условие через данный массив для отрисовки нужного количества колонок, куда будут переданы карточки, подходящие по условию
+                  <Column
+                    key={item}
+                    title={item}
+                    cardList={cardList.filter((card) => card.status === item)}
+                  />
+                ))}
+          </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
   );
 }
-

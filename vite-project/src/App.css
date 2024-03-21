@@ -777,7 +777,7 @@ body {
   padding: 0;
 }
 .header__pop-user-set {
-  display: none;
+  display: block;
   position: absolute;
   top: 61px;
   right: 0;
@@ -881,7 +881,7 @@ body {
 }
 .card__title {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 550;
   line-height: 18px;
   color: #000000;
   margin-bottom: 10px;
