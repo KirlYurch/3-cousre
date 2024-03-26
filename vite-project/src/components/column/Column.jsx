@@ -1,22 +1,23 @@
 /* eslint-disable react/jsx-key */
 import Card from "../card/Card";
+import * as S from "./Column.Styled";
 
 export default function Column({ title, cardList }) {
   return (
-    <div className="main__column column">
-      <div className="column__title">
-        <p>{title}</p>
-      </div>
-      <div className="cards">
+    <S.MainColumn>
+      <S.ColumnTitle>
+        <S.ColumnTitleP>{title}</S.ColumnTitleP>
+      </S.ColumnTitle>
+      <S.ColumnCards>
         {cardList.map((card) => (
           <Card
             name={card.title}
-            topic={card.them}
+            topic={card.topic}
             date={card.date}
             key={card.id}
           />
         ))}
-      </div>
-    </div>
+      </S.ColumnCards>
+    </S.MainColumn>
   );
 }

@@ -1,6 +1,8 @@
 import Column from "../column/Column";
+import * as S from "./Main.Styled.js";
 
-const statusList = [ // Отрисовываю названия колонок через список статусов
+const statusList = [
+  // Отрисовываю названия колонок через список статусов
   "Без статуса",
   "Нужно сделать",
   "В работе",
@@ -10,22 +12,26 @@ const statusList = [ // Отрисовываю названия колонок �
 
 export default function Main({ cardList, isLoading }) {
   return (
-    <main className="main">
-      <div className="container">
-        <div className="main__block">
-          <div className="main__content">
-          {isLoading
+    <S.Main>
+      <S.Container>
+        <S.MainBlock>
+          <S.MainContent>
+            {isLoading
               ? "Данные загружаются, пожалуйста подождите..."
-              :statusList.map((item) => (  // Создаю условие через данный массив для отрисовки нужного количества колонок, куда будут переданы карточки, подходящие по условию
-                  <Column
-                    key={item}
-                    title={item}
-                    cardList={cardList.filter((card) => card.status === item)}
-                  />
-                ))}
-          </div>
-        </div>
-      </div>
-    </main>
+              : statusList.map(
+                  (
+                    item // Создаю условие через данный массив для отрисовки нужного количества колонок, куда будут переданы карточки, подходящие по условию
+                  ) => (
+                    <Column
+                      key={item}
+                      title={item}
+                      cardList={cardList.filter((card) => card.status === item)}
+                    />
+                  )
+                )}
+          </S.MainContent>
+        </S.MainBlock>
+      </S.Container>
+    </S.Main>
   );
 }
