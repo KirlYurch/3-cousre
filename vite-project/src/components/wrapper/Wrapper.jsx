@@ -1,9 +1,9 @@
+import { WrapperStyled } from "./Wrapper.Styled";
+
 export default function Wrapper({ children }) {
-    return (
-      <div className="wrapper">
-        {children}
-  
-       
-      </div>
-    );
-  }
+  return (
+  <WrapperStyled>
+    {children}
+    </WrapperStyled>
+  );
+}

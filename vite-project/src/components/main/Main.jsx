@@ -1,23 +1,37 @@
 import Column from "../column/Column";
-export default function Main() {
-return (
-    <main className="main">
-    <div className="container">
-      <div className="main__block">
-        <div className="main__content">
-          {/* Тут начало  общего блока! */}
+import * as S from "./Main.Styled.js";
 
-          {/* Окончание блоково компонент */}
-          <Column title={`Без статуса`} />
-          <Column title={`Нужно сделать`} />
-          <Column title={`В работе`} />
-          <Column title={`Тестирование`} />
-          <Column title={`Готово`} />
-          {/* ................................................................. */}
-        </div>
-      </div>
-    </div>
-  </main>
+const statusList = [
+  // Отрисовываю названия колонок через список статусов
+  "Без статуса",
+  "Нужно сделать",
+  "В работе",
+  "Тестирование",
+  "Готово",
+];
+
+export default function Main({ cardList, isLoading }) {
+  return (
+    <S.Main>
+      <S.Container>
+        <S.MainBlock>
+          <S.MainContent>
+            {isLoading
+              ? "Данные загружаются, пожалуйста подождите..."
+              : statusList.map(
+                  (
+                    item // Создаю условие через данный массив для отрисовки нужного количества колонок, куда будут переданы карточки, подходящие по условию
+                  ) => (
+                    <Column
+                      key={item}
+                      title={item}
+                      cardList={cardList.filter((card) => card.status === item)}
+                    />
+                  )
+                )}
+          </S.MainContent>
+        </S.MainBlock>
+      </S.Container>
+    </S.Main>
   );
 }
-
